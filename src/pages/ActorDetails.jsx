@@ -23,7 +23,7 @@ const ActorDetails = () => {
     }
 
     return (
-        <div className='h-full flex flex-col items-center justify-center bg-black'>
+        <div className='h-full flex flex-col items-center justify-center'>
             <ActorInfo />
             <div className='w-full flex flex-col py-16 gap-16'>
                 <MovieCarousel title={'Known for'} movies={movies} />

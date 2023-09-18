@@ -1,18 +1,43 @@
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar, NavbarBrand, NavbarContent, Input } from '@nextui-org/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClapperboard, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 export function Nav() {
-    const [valueSearch, setValueSearch] = useState('');
+    const [valueSearch, setValueSearch] = useState('')
+    const navbarRef = useRef(null)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (navbarRef.current) {
+                const scrollTop = window.scrollY
+                if (scrollTop === 0) {
+                    navbarRef.current.classList.add('bg-transparent')
+                    navbarRef.current.classList.remove('bg-chinese-black')
+                } else {
+                    navbarRef.current.classList.remove('bg-transparent')
+                    navbarRef.current.classList.add('bg-chinese-black')
+                }
+            }
+        }
+
+        handleScroll()
+        
+        window.addEventListener('scroll', handleScroll)
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
 
     return (
         <Navbar
             maxWidth='xl'
             height={'6rem'}
             isBlurred={false}
-            className='fixed bg-transparentn'
+            className='fixed duration-300 transition-all z-50'
+            ref={navbarRef}
         >
             <NavbarContent>
                 <Link to='/'>

@@ -37,7 +37,7 @@ const MovieDetails = () => {
     }
 
     return (
-        <div className='h-full flex flex-col items-center justify-center bg-black'>
+        <div className='h-full flex flex-col items-center justify-center'>
             <MovieInfo movie={movie} trailer={trailer} />
             <div className='w-full flex flex-col py-16 gap-16'>
                 <CastCarousel cast={cast} />
